@@ -1,0 +1,9 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="MIT License"
+[[mods]]
+modId="cmcgui119"
+version="0.1.0-alpha"
+displayName="CMCGUI119"
+description="Custom Minecraft GUI"
+authors="niki119"
