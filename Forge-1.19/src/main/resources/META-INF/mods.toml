@@ -1,0 +1,21 @@
+modLoader="javafml"
+loaderVersion="[41,)"
+license="MIT License"
+[[mods]]
+modId="cmcgui119"
+version="0.2.0-alpha"
+displayName="CMCGUI119"
+description="Custom Minecraft GUI"
+authors="niki119"
+[[dependencies.cmcgui119]]
+   modId="forge"
+   mandatory=true
+   versionRange="[41,)"
+   ordering="NONE"
+   side="BOTH"
+[[dependencies.cmcgui119]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="[1.19,1.20)"
+   ordering="NONE"
+   side="BOTH"
