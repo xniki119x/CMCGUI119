@@ -1,9 +1,9 @@
-package erx.niki119.cmcgui119.gui;
+package erx.niki119.cmcgui119.v1165.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import erx.niki119.cmcgui119.utils.json.screens.JsonScreen;
-import erx.niki119.cmcgui119.widgets.CButton;
-import erx.niki119.cmcgui119.widgets.CComponent;
+import erx.niki119.cmcgui119.core.utils.json.screens.JsonScreen;
+import erx.niki119.cmcgui119.v1165.widgets.CButton;
+import erx.niki119.cmcgui119.v1165.widgets.CComponent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;

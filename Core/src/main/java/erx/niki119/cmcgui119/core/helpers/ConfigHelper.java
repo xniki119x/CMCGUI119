@@ -1,25 +1,27 @@
-package erx.niki119.cmcgui119.v1165.helpers;
+package erx.niki119.cmcgui119.core.helpers;
+
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import erx.niki119.cmcgui119.v1165.CMCGUI119;
-import erx.niki119.cmcgui119.v1165.utils.json.JsonConfig;
-import erx.niki119.cmcgui119.v1165.utils.json.components.JsonButton;
-import erx.niki119.cmcgui119.v1165.utils.json.components.JsonImage;
-import erx.niki119.cmcgui119.v1165.utils.json.screens.JsonScreen;
-import erx.niki119.cmcgui119.v1165.widgets.CButton;
-import erx.niki119.cmcgui119.v1165.widgets.CComponent;
+import erx.niki119.cmcgui119.core.Core;
+import erx.niki119.cmcgui119.core.utils.References;
+import erx.niki119.cmcgui119.core.utils.json.JsonConfig;
+import erx.niki119.cmcgui119.core.utils.json.components.JsonButton;
+import erx.niki119.cmcgui119.core.utils.json.components.JsonImage;
+import erx.niki119.cmcgui119.core.utils.json.screens.JsonScreen;
 
 import java.io.*;
 
 public class ConfigHelper {
+    public Core core;
     public JsonConfig config;
     private final File config_file;
     private final Gson gson;
     public boolean isReloadable = true;
 
-    public ConfigHelper(String configPath){
-        config_file = new File(configPath);
+    public ConfigHelper(Core core){
+        this.core = core;
+        config_file = new File(String.format("%s/%s/%s.json", core.gameDir, References.MOD_ID, References.MOD_ID));
         gson = new GsonBuilder().setPrettyPrinting().create();
         loadСonfig();
     }
@@ -41,9 +43,9 @@ public class ConfigHelper {
                 createDefaultScreen();
             }
         }
-        CMCGUI119.JSON_HELPER.loadComponents();
+        //CMCGUI119.JSON_HELPER.loadComponents();
     }
-    public void createDefaultConfig(){
+    private void createDefaultConfig(){
         try {
             config_file.createNewFile();
             FileWriter fw = new FileWriter(config_file);
@@ -73,10 +75,10 @@ public class ConfigHelper {
         String screensPath = config_file.getParentFile().getPath() + "/screens";
         try {
             JsonScreen mainMenuScreen = new JsonScreen("screen", "MainMenuScreen", "cmcgui119:textures/background.png");
-            JsonButton singleplayer = new JsonButton(20, -160,100,20,"BOTTOM_LEFT", "Singleplayer", "cmcgui119:textures/button.png", "OPEN_SINGLEPLAYER");
-            JsonButton multiplayer = new JsonButton(20, -130,100,20,"BOTTOM_LEFT", "Multiplayer", "cmcgui119:textures/button.png", "OPEN_MULTIPLAYER");
-            JsonButton settings = new JsonButton(20, -100,100,20,"BOTTOM_LEFT", "Options", "cmcgui119:textures/button.png", "OPEN_OPTIONS");
-            JsonButton mods = new JsonButton(20, -70,100,20,"BOTTOM_LEFT", "Mods", "cmcgui119:textures/button.png", "OPEN_MODS");
+            JsonButton singleplayer = new JsonButton(20, -160,100,20,"BOTTOM_LEFT", "Singleplayer", "cmcgui119:textures/button.png", "OPEN_GUI", "SINGLEPLAYER");
+            JsonButton multiplayer = new JsonButton(20, -130,100,20,"BOTTOM_LEFT", "Multiplayer", "cmcgui119:textures/button.png", "OPEN_GUI","MULTIPLAYER");
+            JsonButton settings = new JsonButton(20, -100,100,20,"BOTTOM_LEFT", "Options", "cmcgui119:textures/button.png", "OPEN_GUI","OPTIONS");
+            JsonButton mods = new JsonButton(20, -70,100,20,"BOTTOM_LEFT", "Mods", "cmcgui119:textures/button.png", "OPEN_GUI","MODS");
             JsonButton quit = new JsonButton(20, -40,100,20,"BOTTOM_LEFT", "Quit", "cmcgui119:textures/button.png", "QUIT");
             JsonButton reload = new JsonButton(-30, 10,20,20,"TOP_RIGHT", "", "cmcgui119:textures/button_reload.png", "RELOAD_MOD_CONFIG");
             JsonImage logo = new JsonImage("image", 10,-17,200,100,"TOP_LEFT","cmcgui119:textures/logo.png");
@@ -97,16 +99,16 @@ public class ConfigHelper {
             f6.createNewFile();
             f7.createNewFile();
             f8.createNewFile();
-            FileHelper.writeStringInFile(f1, JsonHelper.gson.toJson(mainMenuScreen));
-            FileHelper.writeStringInFile(f2, JsonHelper.gson.toJson(singleplayer));
-            FileHelper.writeStringInFile(f3, JsonHelper.gson.toJson(multiplayer));
-            FileHelper.writeStringInFile(f4, JsonHelper.gson.toJson(settings));
-            FileHelper.writeStringInFile(f5, JsonHelper.gson.toJson(mods));
-            FileHelper.writeStringInFile(f6, JsonHelper.gson.toJson(quit));
-            FileHelper.writeStringInFile(f7, JsonHelper.gson.toJson(reload));
-            FileHelper.writeStringInFile(f8, JsonHelper.gson.toJson(logo));
+            FileHelper.writeStringInFile(f1, gson.toJson(mainMenuScreen));
+            FileHelper.writeStringInFile(f2, gson.toJson(singleplayer));
+            FileHelper.writeStringInFile(f3, gson.toJson(multiplayer));
+            FileHelper.writeStringInFile(f4, gson.toJson(settings));
+            FileHelper.writeStringInFile(f5, gson.toJson(mods));
+            FileHelper.writeStringInFile(f6, gson.toJson(quit));
+            FileHelper.writeStringInFile(f7, gson.toJson(reload));
+            FileHelper.writeStringInFile(f8, gson.toJson(logo));
         }catch(Exception e){
-            DebugHelper.debug("Не удалось создать файлы для стандартного скрина");
+            core.LOGGER.debug("Не удалось создать файлы для стандартного скрина");
         }
     }
 }

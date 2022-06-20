@@ -1,26 +1,91 @@
-package erx.niki119.cmcgui119.v1165.helpers;
+package erx.niki119.cmcgui119.core.helpers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import erx.niki119.cmcgui119.v1165.CMCGUI119;
-import erx.niki119.cmcgui119.v1165.gui.CScreen;
-import erx.niki119.cmcgui119.v1165.utils.References;
-import erx.niki119.cmcgui119.v1165.utils.json.components.JsonBase;
-import erx.niki119.cmcgui119.v1165.utils.json.components.JsonButton;
-import erx.niki119.cmcgui119.v1165.utils.json.components.JsonImage;
-import erx.niki119.cmcgui119.v1165.utils.json.components.JsonText;
-import erx.niki119.cmcgui119.v1165.utils.json.screens.JsonScreen;
-import erx.niki119.cmcgui119.v1165.widgets.CButton;
-import erx.niki119.cmcgui119.v1165.widgets.CComponent;
-import erx.niki119.cmcgui119.v1165.widgets.CImage;
-import erx.niki119.cmcgui119.v1165.widgets.CText;
-import net.minecraftforge.fml.loading.FMLPaths;
+import erx.niki119.cmcgui119.core.Core;
+import erx.niki119.cmcgui119.core.utils.References;
+import erx.niki119.cmcgui119.core.utils.json.components.*;
+import erx.niki119.cmcgui119.core.utils.json.screens.JsonScreen;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsonHelper {
+    private Core core;
+    private String screensDir;
+    public Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+    public JsonHelper(Core core) {
+        this.core = core;
+        screensDir = String.format("%s/%s/screens",core.gameDir,References.MOD_ID);
+    }
+
+    public List<JsonScreen> loadScreens(){
+        List<JsonScreen> list = new ArrayList<>();
+        try {
+            File screens = new File(screensDir);
+            for(File f : screens.listFiles()){
+                if(f.isFile() && FileHelper.getExtension(f).equals("json")) {
+                    core.LOGGER.debug("Parse json file with name  "+ f.getName());
+                    list.add(gson.fromJson(FileHelper.readFileString(f), JsonScreen.class));
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    public List<JsonComponent> readComponentsForScreen(JsonScreen json){
+        List<JsonComponent> screenComponents = new ArrayList<>();
+        try {
+            File screenComponentsFolder = new File(String.format("%s/%s",screensDir,json.name));
+            if(screenComponentsFolder.exists()){
+                List<File> dirs = new ArrayList<>();
+                List<File> jsonFiles = new ArrayList<>();
+                sort(screenComponentsFolder, dirs, jsonFiles);
+                if(!jsonFiles.isEmpty()){
+                    filesToJsons(jsonFiles,screenComponents);
+                }
+                //screenComponents = jsonsToCComponents(jsonBases);
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return screenComponents;
+    }
+
+    public static void sort(File screens, List<File> dirs, List<File> jsons) {
+        try {
+            for(File f : screens.listFiles()) {
+                if(f.isFile() && FileHelper.getExtension(f).equals("json")) {
+                    jsons.add(f);
+                } else {
+                    if(f.isDirectory()) {
+                        sort(f, dirs, jsons);
+                    }
+                }
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void filesToJsons(List<File> jsonFiles, List<JsonComponent> jsonBases){
+        try {
+            for(File f : jsonFiles) {
+                String id = gson.fromJson(FileHelper.readFileString(f), JsonBase.class).id;
+                switch(id){
+                    case "button":jsonBases.add(gson.fromJson(FileHelper.readFileString(f), JsonButton.class));break;
+                    case "image":jsonBases.add(gson.fromJson(FileHelper.readFileString(f), JsonImage.class));break;
+                    case "text":jsonBases.add(gson.fromJson(FileHelper.readFileString(f), JsonText.class));break;
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    /*
     public List<CScreen> screens;
     public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -37,25 +102,7 @@ public class JsonHelper {
         DebugHelper.debug("Not exists screen with name "+name);
         return null;
     }
-    public static List<CComponent> readComponentsForScreen(JsonScreen json){
-        List<CComponent> screenComponents = new ArrayList<>();
-        try {
-            File screenComponentsFolder = new File(FMLPaths.GAMEDIR.get().toFile().getPath() + "/" + References.MOD_ID + "/screens/"+json.name);
-            if(screenComponentsFolder.exists()){
-                List<File> dirs = new ArrayList<>();
-                List<File> jsonFiles = new ArrayList<>();
-                List<JsonBase> jsonBases = new ArrayList<>();
-                sort(screenComponentsFolder, dirs, jsonFiles);
-                if(!jsonFiles.isEmpty()){
-                    filesToJsons(jsonFiles,jsonBases);
-                }
-                screenComponents = jsonsToCComponents(jsonBases);
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return screenComponents;
-    }
+
 
     public static List<JsonBase> readAllJsonComponents() {
         List<JsonBase> list = new ArrayList<>();
@@ -90,20 +137,7 @@ public class JsonHelper {
         }
         return list;
     }
-    public static void filesToJsons(List<File> jsonFiles, List<JsonBase> jsonBases){
-        try {
-            for(File f : jsonFiles) {
-                String id = gson.fromJson(FileHelper.readFileString(f), JsonBase.class).id;
-                switch(id){
-                    case "button":jsonBases.add(gson.fromJson(FileHelper.readFileString(f), JsonButton.class));break;
-                    case "image":jsonBases.add(gson.fromJson(FileHelper.readFileString(f), JsonImage.class));break;
-                    case "text":jsonBases.add(gson.fromJson(FileHelper.readFileString(f), JsonText.class));break;
-                }
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+
     public static List<CComponent> jsonsToCComponents(List<JsonBase> jsons){
         List<CComponent> components = new ArrayList<>();
         for(JsonBase jb : jsons){
@@ -126,21 +160,7 @@ public class JsonHelper {
         return screens;
     }
 
-    public static void sort(File screens, List<File> dirs, List<File> jsons) {
-        try {
-            for(File f : screens.listFiles()) {
-                if(f.isFile() && FileHelper.getExtension(f).equals("json")) {
-                    jsons.add(f);
-                } else {
-                    if(f.isDirectory()) {
-                        sort(f, dirs, jsons);
-                    }
-                }
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
+
     public static int getColorFromString(String colorString){
         int R = 0;
         int G = 0;
@@ -195,4 +215,6 @@ public class JsonHelper {
         return i10;
     }
 
+
+     */
 }

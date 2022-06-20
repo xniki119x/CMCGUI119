@@ -1,6 +1,6 @@
-package erx.niki119.cmcgui119.utils;
+package erx.niki119.cmcgui119.v1165.utils;
 
-import erx.niki119.cmcgui119.CMCGUI119;
+import erx.niki119.cmcgui119.v1165.CMCGUI119;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.*;
 import net.minecraftforge.fml.client.gui.screen.ModListScreen;
@@ -25,8 +25,8 @@ public enum ActionType {
         Minecraft.getInstance().stop();
     }),
     RELOAD_MOD_CONFIG(a -> {
-        CMCGUI119.CONFIG_HELPER.reload();
-        Minecraft.getInstance().setScreen(CMCGUI119.JSON_HELPER.getScreen("MainMenuScreen"));
+        //CMCGUI119.CONFIG_HELPER.reload();
+        //Minecraft.getInstance().setScreen(CMCGUI119.JSON_HELPER.getScreen("MainMenuScreen"));
     }),
     NONE(a -> {
     });

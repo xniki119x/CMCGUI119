@@ -1,4 +1,4 @@
-package erx.niki119.cmcgui119.v1165.utils.json.components;
+package erx.niki119.cmcgui119.core.utils.json.components;
 
 public class JsonImage extends JsonComponent {
     public String texture;

@@ -1,8 +1,8 @@
-package erx.niki119.cmcgui119.widgets;
+package erx.niki119.cmcgui119.v1165.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import erx.niki119.cmcgui119.utils.AnchorType;
-import erx.niki119.cmcgui119.utils.json.components.JsonImage;
+import erx.niki119.cmcgui119.core.utils.AnchorType;
+import erx.niki119.cmcgui119.core.utils.json.components.JsonImage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
@@ -23,8 +23,8 @@ public class CImage extends CComponent {
 
     @Override
     public CImage init(Screen screen){
-        this.x = xOffset+anchor.getX(screen);
-        this.y = yOffset+anchor.getY(screen);
+        this.x = xOffset+anchor.getX(new int[]{screen.width, screen.height});
+        this.y = yOffset+anchor.getY(new int[]{screen.width, screen.height});
         return this;
     }
 

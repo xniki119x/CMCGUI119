@@ -1,6 +1,6 @@
-package erx.niki119.cmcgui119.v1165.utils.json.screens;
+package erx.niki119.cmcgui119.core.utils.json.screens;
 
-import erx.niki119.cmcgui119.v1165.utils.json.components.JsonBase;
+import erx.niki119.cmcgui119.core.utils.json.components.JsonBase;
 
 public class JsonScreen extends JsonBase {
     public String background;

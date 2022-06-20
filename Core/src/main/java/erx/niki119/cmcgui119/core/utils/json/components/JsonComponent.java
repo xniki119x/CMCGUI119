@@ -1,6 +1,4 @@
-package erx.niki119.cmcgui119.v1165.utils.json.components;
-
-import erx.niki119.cmcgui119.v1165.utils.AnchorType;
+package erx.niki119.cmcgui119.core.utils.json.components;
 
 public class JsonComponent extends JsonBase {
     public int xPos, yPos, width, height;

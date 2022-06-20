@@ -1,9 +1,9 @@
-package erx.niki119.cmcgui119.widgets;
+package erx.niki119.cmcgui119.v1165.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import erx.niki119.cmcgui119.utils.ActionType;
-import erx.niki119.cmcgui119.utils.AnchorType;
-import erx.niki119.cmcgui119.utils.json.components.JsonButton;
+import erx.niki119.cmcgui119.v1165.utils.ActionType;
+import erx.niki119.cmcgui119.core.utils.AnchorType;
+import erx.niki119.cmcgui119.core.utils.json.components.JsonButton;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.util.ResourceLocation;
@@ -42,8 +42,8 @@ public class CButton extends CComponent {
     }
 
     public CButton init(Screen screen){
-        x = xOffset + anchor.getX(screen);
-        y = yOffset + anchor.getY(screen);
+        x = xOffset + anchor.getX(new int[]{screen.width, screen.height});
+        y = yOffset + anchor.getY(new int[]{screen.width, screen.height});
         return this;
     }
 

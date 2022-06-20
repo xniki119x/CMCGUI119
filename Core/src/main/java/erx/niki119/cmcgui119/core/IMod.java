@@ -1,4 +1,10 @@
 package erx.niki119.cmcgui119.core;
 
-public interface ICore {
+import org.apache.logging.log4j.Logger;
+
+public interface IMod {
+
+    Logger getLogger();
+    String getGameDir();
+
 }

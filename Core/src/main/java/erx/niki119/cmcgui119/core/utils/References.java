@@ -1,4 +1,4 @@
-package erx.niki119.cmcgui119.v1165.utils;
+package erx.niki119.cmcgui119.core.utils;
 
 public class References {
     public static String MOD_ID = "cmcgui119";
