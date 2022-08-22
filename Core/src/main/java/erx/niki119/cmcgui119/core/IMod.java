@@ -6,5 +6,6 @@ public interface IMod {
 
     Logger getLogger();
     String getGameDir();
+    void reload();
 
 }

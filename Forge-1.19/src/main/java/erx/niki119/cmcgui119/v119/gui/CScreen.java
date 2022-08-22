@@ -5,13 +5,22 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import erx.niki119.cmcgui119.core.utils.json.screens.JsonScreen;
 import erx.niki119.cmcgui119.v119.widgets.CButton;
 import erx.niki119.cmcgui119.v119.widgets.CComponent;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.CubeMap;
+import net.minecraft.client.renderer.PanoramaRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+
 import java.util.List;
 
 public class CScreen extends Screen {
+    public static final CubeMap CUBE_MAP = new CubeMap(new ResourceLocation("textures/gui/title/background/panorama"));
+    private static final ResourceLocation PANORAMA_OVERLAY = new ResourceLocation("textures/gui/title/background/panorama_overlay.png");
+    private final PanoramaRenderer panorama = new PanoramaRenderer(CUBE_MAP);
+    public boolean p = false;
     public List<CComponent> components;
     public ResourceLocation background;
     public String name;
@@ -22,6 +31,7 @@ public class CScreen extends Screen {
         if(json.background!=null) {
             background = new ResourceLocation(json.background);
         }else {
+            p = true;
             background = new ResourceLocation("textures/gui/presets/isles.png");
         }
         this.components = components;
@@ -36,8 +46,12 @@ public class CScreen extends Screen {
 
     @Override
     public void render(PoseStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
-        RenderSystem.setShaderTexture(0, background);
-        blit(p_230430_1_, 0, 0, this.width, this.height, 0.0F, 0.0F, 1, 1, 1, 1);
+        if(p) {
+            this.panorama.render(p_230430_4_, Mth.clamp(1, 0.0F, 1.0F));
+        }else {
+            RenderSystem.setShaderTexture(0, background);
+            blit(p_230430_1_, 0, 0, this.width, this.height, 0.0F, 0.0F, 1, 1, 1, 1);
+        }
         for(CComponent c : components){
             c.render(p_230430_1_,p_230430_2_,p_230430_3_,p_230430_4_);
         }

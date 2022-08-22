@@ -42,11 +42,13 @@ public enum ActionType {
         //Minecraft.getInstance().setScreen(CMCGUI119.JSON_HELPER.getScreen("MainMenuScreen"));
     }),
     CONNECT_TO_SERVER(a -> {
-        ServerData sd = new ServerData("", "", false);
+        ServerData sd = new ServerData(a.data, a.data, false);
         ConnectScreen.startConnecting(new TitleScreen(), Minecraft.getInstance(), ServerAddress.parseString(sd.ip), sd);
     }),
     OPEN_GUI(a ->{
-        Minecraft.getInstance().setScreen(GUIS.valueOf(a.data.toUpperCase(Locale.ROOT)).apply(Minecraft.getInstance().screen));
+        try {
+            Minecraft.getInstance().setScreen(GUIS.valueOf(a.data.toUpperCase(Locale.ROOT)).apply(Minecraft.getInstance().screen));
+        }catch (Exception e){e.printStackTrace();}
     }),
     OPEN_URL(a ->{
         Util.getPlatform().openUri(URI.create(a.data));}),

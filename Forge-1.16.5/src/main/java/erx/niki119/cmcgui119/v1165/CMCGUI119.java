@@ -14,6 +14,7 @@ import erx.niki119.cmcgui119.v1165.widgets.CButton;
 import erx.niki119.cmcgui119.v1165.widgets.CComponent;
 import erx.niki119.cmcgui119.v1165.widgets.CImage;
 import erx.niki119.cmcgui119.v1165.widgets.CText;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -36,6 +37,12 @@ public class CMCGUI119 implements IMod {
         loadScreens();
         MinecraftForge.EVENT_BUS.register(eventHandler);
         LOGGER.info("Запустился");
+        Minecraft.ON_OSX
+    }
+
+    @Override
+    public void reload() {
+
     }
 
     @Override

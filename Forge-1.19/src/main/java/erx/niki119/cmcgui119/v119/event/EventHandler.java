@@ -4,6 +4,7 @@ import erx.niki119.cmcgui119.v119.CMCGUI119;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraftforge.client.event.ScreenOpenEvent;
+import net.minecraftforge.client.loading.ClientModLoader;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class EventHandler {

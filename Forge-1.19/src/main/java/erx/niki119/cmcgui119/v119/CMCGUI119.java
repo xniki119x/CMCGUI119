@@ -40,6 +40,7 @@ public class CMCGUI119 implements IMod {
         LOGGER.info("Запустился");
     }
 
+    @Override
     public void reload(){
         loadScreens();
         Minecraft.getInstance().setScreen(new TitleScreen());

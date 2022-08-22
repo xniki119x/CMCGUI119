@@ -13,7 +13,7 @@ import erx.niki119.cmcgui119.core.utils.json.screens.JsonScreen;
 import java.io.*;
 
 public class ConfigHelper {
-    public Core core;
+    private Core core;
     public JsonConfig config;
     private final File config_file;
     private final Gson gson;
