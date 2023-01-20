@@ -13,13 +13,13 @@ plugins {
     id 'net.minecraftforge.gradle'
 }
 compileJava.options.encoding = "UTF-8"
-version = "1.19.2-forge-${mod_version}"
+version = "1.19.3-forge-${mod_version}"
 java {
     archivesBaseName = "${mod_name}"
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 minecraft {
-    mappings channel: "official", version: "1.19.2"
+    mappings channel: "official", version: "1.19.3"
     runs {
         client {
             workingDirectory project.file('run')
@@ -78,7 +78,7 @@ repositories {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:1.19.2-43.1.32"
+    minecraft "net.minecraftforge:forge:1.19.3-44.1.0"
     implementation(project(":Core"))
     implementation "com.google.code.gson:gson:2.9.0"
 }
