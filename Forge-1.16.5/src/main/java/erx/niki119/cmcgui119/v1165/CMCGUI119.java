@@ -37,12 +37,11 @@ public class CMCGUI119 implements IMod {
         loadScreens();
         MinecraftForge.EVENT_BUS.register(eventHandler);
         LOGGER.info("Запустился");
-        Minecraft.ON_OSX
     }
 
     @Override
     public void reload() {
-
+        loadScreens();
     }
 
     @Override

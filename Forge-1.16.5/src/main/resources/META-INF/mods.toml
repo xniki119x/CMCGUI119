@@ -3,7 +3,7 @@ loaderVersion="[36,)"
 license="MIT License"
 [[mods]]
 modId="cmcgui119"
-version="0.1.0-alpha"
+version="0.2.4-alpha"
 displayName="CMCGUI119"
 description="Custom Minecraft GUI"
 authors="niki119"

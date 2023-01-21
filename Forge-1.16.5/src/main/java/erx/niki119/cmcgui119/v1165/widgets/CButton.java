@@ -17,6 +17,7 @@ public class CButton extends CComponent {
     protected final int fontColor, hoverFontColor;
     protected AnchorType anchor;
     public ActionType action;
+    public String data;
     public CButton(JsonButton json){
         xOffset = x = json.xPos;
         yOffset = y = json.yPos;
@@ -25,19 +26,24 @@ public class CButton extends CComponent {
         if(json.text!=null && !json.text.equals("")) this.text = json.text;
         anchor = AnchorType.valueOf(json.anchor);
         try {
-            if(json.action != null && !json.action.equals("")) action = ActionType.valueOf(json.action);
+            if(json.action != null && !json.action.equals("")) {
+                action = ActionType.valueOf(json.action);
+                data = json.data;
+            }
         }catch(Exception e){
             e.printStackTrace();
             action = ActionType.NONE;
         }
         this.texture = new ResourceLocation(json.texture);
-        this.fontColor = 16777215;
+        this.fontColor = (0x00180000 | 0x0000BA00 | 0x0000001b);// 16777215;
         this.hoverFontColor = 0;
     }
 
     public boolean press(){
-        if(action!=null)
+        if(action!=null) {
+            action.data = data;
             action.start(action);
+        }
         return true;
     }
 

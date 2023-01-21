@@ -1,9 +1,12 @@
 package erx.niki119.cmcgui119.v1165.utils;
 
 import erx.niki119.cmcgui119.v1165.CMCGUI119;
+import erx.niki119.cmcgui119.v1165.gui.GUIS;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.*;
 import net.minecraftforge.fml.client.gui.screen.ModListScreen;
+
+import java.util.Locale;
 import java.util.function.Consumer;
 
 public enum ActionType {
@@ -25,13 +28,19 @@ public enum ActionType {
         Minecraft.getInstance().stop();
     }),
     RELOAD_MOD_CONFIG(a -> {
-        //CMCGUI119.CONFIG_HELPER.reload();
-        //Minecraft.getInstance().setScreen(CMCGUI119.JSON_HELPER.getScreen("MainMenuScreen"));
+        CMCGUI119.INSTANCE.reload();
+        Minecraft.getInstance().setScreen(CMCGUI119.INSTANCE.getScreen("MainMenuScreen"));
+    }),
+    OPEN_GUI(a ->{
+        try {
+            Minecraft.getInstance().setScreen(GUIS.valueOf(a.data.toUpperCase(Locale.ROOT)).apply(Minecraft.getInstance().screen));
+        }catch (Exception e){e.printStackTrace();}
     }),
     NONE(a -> {
     });
 
     private Consumer<ActionType> action;
+    public String data;
 
     ActionType(Consumer<ActionType> action) {
         this.action = action;

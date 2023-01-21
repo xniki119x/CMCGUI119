@@ -1,13 +1,12 @@
     apply plugin: 'java-library'
     apply plugin: 'net.minecraftforge.gradle'
-    apply plugin: 'org.spongepowered.mixin'
+   // apply plugin: 'org.spongepowered.mixin'
 
     version = "1.16.5-forge-${mod_version}"
     compileJava.options.encoding = "UTF-8"
     java {
         archivesBaseName = "${mod_name}"
-        toolchain.languageVersion = JavaLanguageVersion.of(16)
-        //sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.16'
+        //toolchain.languageVersion = JavaLanguageVersion.of(8)
     }
 
     minecraft {
@@ -70,16 +69,12 @@
 
     dependencies {
         minecraft "net.minecraftforge:forge:1.16.5-36.2.22"
-        annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-        api(project(":Core"))
+        //annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+        implementation(project(":Core"))
         implementation "com.google.code.gson:gson:2.9.0"
     }
 
     jar {
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-        ant.replaceregexp(match: '@MOD_VERSION@', replace: "${mod_version}", flags: 'g', byline: true) {
-            fileset(dir: 'src/main/resources/META-INF', includes: 'mods.toml')
-        }
         manifest {
             attributes([
                     "Specification-Title"     : "cmcgui119",
