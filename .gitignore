@@ -2,3 +2,12 @@
 .gradle
 build
 run
+Forge-1.16.5/build
+Forge-1.16.5/run
+Forge-1.16.5/src/test
+Forge-1.16.5/src/generated
+Core/build
+Forge-1.19.3/build
+Forge-1.19.3/run
+Forge-1.19.3/src/test
+Forge-1.19.3/src/generated

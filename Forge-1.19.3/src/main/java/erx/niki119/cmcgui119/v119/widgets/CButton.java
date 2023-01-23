@@ -2,6 +2,7 @@ package erx.niki119.cmcgui119.v119.widgets;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import erx.niki119.cmcgui119.core.utils.json.Value;
 import erx.niki119.cmcgui119.v119.utils.ActionType;
 import erx.niki119.cmcgui119.core.utils.AnchorType;
 import erx.niki119.cmcgui119.core.utils.json.components.JsonButton;
@@ -22,24 +23,15 @@ public class CButton extends CComponent {
     public ActionType action;
     public String data;
     public CButton(JsonButton json){
-        xOffset = x = json.xPos;
-        yOffset = y = json.yPos;
-        width = json.width;
-        height = json.height;
-        if(json.text!=null && !json.text.equals("")) this.text = Component.translatable(json.text).getString();
-        anchor = AnchorType.valueOf(json.anchor);
-        try {
-            if(json.action != null && !json.action.equals("")) {
-                action = ActionType.valueOf(json.action);
-                this.data = json.data;
-            }else {
-                action = ActionType.NONE;
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            action = ActionType.NONE;
-        }
-        this.texture = new ResourceLocation(json.texture);
+        xOffset = x = new Value<Integer>(json.xPos, 0).get();
+        yOffset = y = new Value<Integer>(json.yPos, 0).get();
+        width = new Value<Integer>(json.width, 10).get();
+        height = new Value<Integer>(json.height, 10).get();
+        text = Component.translatable(new Value<String>(json.text, "").get()).toString();
+        anchor = AnchorType.valueOf(new Value<String>(json.anchor, "DEFAULT").get());
+        data = new Value<String>(json.data, "").get();
+        action = ActionType.valueOf(new Value<String>(json.action, "NONE").get());
+        this.texture = new ResourceLocation(new Value<String>(json.texture, "missing").get());
         this.fontColor = 16777215;
         this.hoverFontColor = 0;
     }
