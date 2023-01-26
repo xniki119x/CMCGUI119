@@ -27,7 +27,7 @@ public class CButton extends CComponent {
         yOffset = y = new Value<Integer>(json.yPos, 0).get();
         width = new Value<Integer>(json.width, 10).get();
         height = new Value<Integer>(json.height, 10).get();
-        text = Component.translatable(new Value<String>(json.text, "").get()).toString();
+        text = new Value<String>(json.text, "").get();
         anchor = AnchorType.valueOf(new Value<String>(json.anchor, "DEFAULT").get());
         data = new Value<String>(json.data, "").get();
         action = ActionType.valueOf(new Value<String>(json.action, "NONE").get());
