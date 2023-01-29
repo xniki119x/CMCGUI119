@@ -3,9 +3,14 @@ package erx.niki119.cmcgui119.v1165.utils;
 import erx.niki119.cmcgui119.v1165.CMCGUI119;
 import erx.niki119.cmcgui119.v1165.gui.GUIS;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.MinecraftGame;
 import net.minecraft.client.gui.screen.*;
+import net.minecraft.client.multiplayer.ServerAddress;
+import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.util.Util;
 import net.minecraftforge.fml.client.gui.screen.ModListScreen;
 
+import java.net.URI;
 import java.util.Locale;
 import java.util.function.Consumer;
 
@@ -24,6 +29,11 @@ public enum ActionType {
     OPEN_MULTIPLAYER(a -> {
         Minecraft.getInstance().setScreen(new MultiplayerScreen(Minecraft.getInstance().screen));
     }),
+    CONNECT_TO_SERVER(a -> {
+        ServerData sd = new ServerData(a.data, a.data, false);
+        Minecraft.getInstance().setScreen(new ConnectingScreen(new MainMenuScreen(), Minecraft.getInstance(), sd));
+        //ConnectingScreen.startConnecting(new TitleScreen(), Minecraft.getInstance(), ServerAddress.parseString(sd.ip), sd);
+    }),
     QUIT(a -> {
         Minecraft.getInstance().stop();
     }),
@@ -36,6 +46,8 @@ public enum ActionType {
             Minecraft.getInstance().setScreen(GUIS.valueOf(a.data.toUpperCase(Locale.ROOT)).apply(Minecraft.getInstance().screen));
         }catch (Exception e){e.printStackTrace();}
     }),
+    OPEN_URL(a ->{
+        Util.getPlatform().openUri(URI.create(a.data));}),
     NONE(a -> {
     });
 

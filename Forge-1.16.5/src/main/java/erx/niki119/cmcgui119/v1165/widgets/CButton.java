@@ -1,6 +1,7 @@
 package erx.niki119.cmcgui119.v1165.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import erx.niki119.cmcgui119.core.utils.json.Value;
 import erx.niki119.cmcgui119.v1165.utils.ActionType;
 import erx.niki119.cmcgui119.core.utils.AnchorType;
 import erx.niki119.cmcgui119.core.utils.json.components.JsonButton;
@@ -19,24 +20,17 @@ public class CButton extends CComponent {
     public ActionType action;
     public String data;
     public CButton(JsonButton json){
-        xOffset = x = json.xPos;
-        yOffset = y = json.yPos;
-        width = json.width;
-        height = json.height;
-        if(json.text!=null && !json.text.equals("")) this.text = json.text;
-        anchor = AnchorType.valueOf(json.anchor);
-        try {
-            if(json.action != null && !json.action.equals("")) {
-                action = ActionType.valueOf(json.action);
-                data = json.data;
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-            action = ActionType.NONE;
-        }
-        this.texture = new ResourceLocation(json.texture);
-        this.fontColor = (0x00180000 | 0x0000BA00 | 0x0000001b);// 16777215;
-        this.hoverFontColor = 0;
+        xOffset = x = new Value<Integer>(json.xPos, 0).get();
+        yOffset = y = new Value<Integer>(json.yPos, 0).get();
+        width = new Value<Integer>(json.width, 10).get();
+        height = new Value<Integer>(json.height, 10).get();
+        text = new Value<String>(json.text, "").get();
+        anchor = AnchorType.valueOf(new Value<String>(json.anchor, "DEFAULT").get());
+        data = new Value<String>(json.data, "").get();
+        action = ActionType.valueOf(new Value<String>(json.action, "NONE").get());
+        texture = new ResourceLocation(new Value<String>(json.texture, "missing").get());
+        fontColor = CText.getColorFromString(new Value<String>(json.fontColor, "000").get());
+        hoverFontColor = CText.getColorFromString(new Value<String>(json.hoveredFontColor, "000").get());
     }
 
     public boolean press(){

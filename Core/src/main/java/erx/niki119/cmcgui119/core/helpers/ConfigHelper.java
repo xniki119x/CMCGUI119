@@ -43,7 +43,6 @@ public class ConfigHelper {
                 createDefaultScreen();
             }
         }
-        //CMCGUI119.JSON_HELPER.loadComponents();
     }
     private void createDefaultConfig(){
         try {

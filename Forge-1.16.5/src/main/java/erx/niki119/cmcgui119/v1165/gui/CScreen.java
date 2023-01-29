@@ -6,14 +6,20 @@ import erx.niki119.cmcgui119.v1165.widgets.CButton;
 import erx.niki119.cmcgui119.v1165.widgets.CComponent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.renderer.RenderSkybox;
+import net.minecraft.client.renderer.RenderSkyboxCube;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TranslationTextComponent;
 import java.util.List;
 
 public class CScreen extends Screen {
+    public static final RenderSkyboxCube CUBE_MAP = new RenderSkyboxCube(new ResourceLocation("textures/gui/title/background/panorama"));
+    private final RenderSkybox panorama = new RenderSkybox(CUBE_MAP);
     public List<CComponent> components;
     public ResourceLocation background;
     public String name;
+    public boolean p = false;
 
     public CScreen(JsonScreen json, List<CComponent> components) {
         super(new TranslationTextComponent(json.name));
@@ -21,6 +27,7 @@ public class CScreen extends Screen {
         if(json.background!=null) {
             background = new ResourceLocation(json.background);
         }else {
+            p = true;
             background = new ResourceLocation("textures/gui/presets/isles.png");
         }
         this.components = components;
@@ -36,9 +43,13 @@ public class CScreen extends Screen {
 
     @Override
     public void render(MatrixStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
-        fill(p_230430_1_, 0, 0, this.width, this.height, -1);
-        minecraft.getTextureManager().bind(background);
-        blit(p_230430_1_, 0, 0, this.width, this.height, 0.0F, 0.0F, 1, 1, 1, 1);
+        if(p) {
+            this.panorama.render(p_230430_4_, MathHelper.clamp(1, 0, 1));
+        }else {
+            //fill(p_230430_1_, 0, 0, this.width, this.height, -1);
+            minecraft.getTextureManager().bind(background);
+            blit(p_230430_1_, 0, 0, this.width, this.height, 0.0F, 0.0F, 1, 1, 1, 1);
+        }
         for(CComponent c : components){
             c.render(p_230430_1_,p_230430_2_,p_230430_3_,p_230430_4_);
         }

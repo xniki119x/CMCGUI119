@@ -12,8 +12,4 @@ public class JsonComponent extends JsonBase {
         this.height = height;
         this.anchor = anchor;
     }
-
-    public void render(){
-
-    }
 }
