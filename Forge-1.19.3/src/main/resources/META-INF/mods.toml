@@ -2,18 +2,18 @@ modLoader="javafml"
 loaderVersion="[41,)"
 license="MIT License"
 [[mods]]
-modId="cmcgui119"
-version="0.2.0-alpha"
-displayName="CMCGUI119"
-description="Custom Minecraft GUI"
+modId="empyrealinterface"
+version="0.2.4-alpha"
+displayName="Empyreal Interface"
+description=""
 authors="niki119"
-[[dependencies.cmcgui119]]
+[[dependencies.empyrealinterface]]
    modId="forge"
    mandatory=true
    versionRange="[41,)"
    ordering="NONE"
    side="BOTH"
-[[dependencies.cmcgui119]]
+[[dependencies.empyrealinterface]]
    modId="minecraft"
    mandatory=true
    versionRange="[1.19,1.20)"

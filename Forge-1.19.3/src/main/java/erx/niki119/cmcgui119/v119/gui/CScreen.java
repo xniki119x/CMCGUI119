@@ -18,7 +18,6 @@ import java.util.List;
 
 public class CScreen extends Screen {
     public static final CubeMap CUBE_MAP = new CubeMap(new ResourceLocation("textures/gui/title/background/panorama"));
-    private static final ResourceLocation PANORAMA_OVERLAY = new ResourceLocation("textures/gui/title/background/panorama_overlay.png");
     private final PanoramaRenderer panorama = new PanoramaRenderer(CUBE_MAP);
     public boolean p = false;
     public List<CComponent> components;

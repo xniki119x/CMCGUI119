@@ -10,7 +10,7 @@ public class EventHandler {
     @SubscribeEvent
     public void screenOpenEvent(ScreenEvent.Opening event){
         if(event.getScreen() != null) {
-            CMCGUI119.LOGGER.info(event.getScreen().getClass());
+            //CMCGUI119.LOGGER.info(event.getScreen().getClass());
             if(event.getScreen().getClass() == TitleScreen.class) {
                 if(CMCGUI119.CORE.getChelper().config.enableCustomMainMenuScreen) {
                     try {

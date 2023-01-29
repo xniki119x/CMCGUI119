@@ -25,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod("cmcgui119")
+@Mod("empyrealinterface")
 public class CMCGUI119 implements IMod {
     public static Logger LOGGER = LogManager.getLogger(References.MOD_NAME);
     public static Core CORE;
