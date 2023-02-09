@@ -31,9 +31,9 @@ public class CButton extends CComponent {
         anchor = AnchorType.valueOf(new Value<String>(json.anchor, "DEFAULT").get());
         data = new Value<String>(json.data, "").get();
         action = ActionType.valueOf(new Value<String>(json.action, "NONE").get());
-        this.texture = new ResourceLocation(new Value<String>(json.texture, "missing").get());
-        this.fontColor = 16777215;
-        this.hoverFontColor = 0;
+        texture = new ResourceLocation(new Value<String>(json.texture, "missing").get());
+        fontColor = CText.getColorFromString(new Value<String>(json.fontColor, "FFF").get());
+        hoverFontColor = CText.getColorFromString(new Value<String>(json.hoveredFontColor, "FFF").get());
     }
 
     public boolean press(){
