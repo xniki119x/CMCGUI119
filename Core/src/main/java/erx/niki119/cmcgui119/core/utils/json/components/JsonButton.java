@@ -23,6 +23,6 @@ public class JsonButton extends JsonComponent {
     }
 
     public JsonButton(int xPos, int yPos, int width, int height, String anchor, String text, String texture, String action) {
-        this(xPos, yPos, width, height, anchor,text,texture,action,"", "000", "000");
+        this(xPos, yPos, width, height, anchor,text,texture,action,"", "FFF", "FFF");
     }
 }

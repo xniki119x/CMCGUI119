@@ -74,11 +74,11 @@ public class ConfigHelper {
         String screensPath = config_file.getParentFile().getPath() + "/screens";
         try {
             JsonScreen mainMenuScreen = new JsonScreen("screen", "MainMenuScreen", "cmcgui119:textures/background.png");
-            JsonButton singleplayer = new JsonButton(20, -160,100,20,"BOTTOM_LEFT", "Singleplayer", "cmcgui119:textures/button.png", "OPEN_GUI", "SINGLEPLAYER");
-            JsonButton multiplayer = new JsonButton(20, -130,100,20,"BOTTOM_LEFT", "Multiplayer", "cmcgui119:textures/button.png", "OPEN_GUI","MULTIPLAYER");
-            JsonButton settings = new JsonButton(20, -100,100,20,"BOTTOM_LEFT", "Options", "cmcgui119:textures/button.png", "OPEN_GUI","OPTIONS");
-            JsonButton mods = new JsonButton(20, -70,100,20,"BOTTOM_LEFT", "Mods", "cmcgui119:textures/button.png", "OPEN_GUI","MODS");
-            JsonButton quit = new JsonButton(20, -40,100,20,"BOTTOM_LEFT", "Quit", "cmcgui119:textures/button.png", "QUIT");
+            JsonButton singleplayer = new JsonButton(20, -160,100,20,"BOTTOM_LEFT", "Singleplayer", "cmcgui119:textures/button2.png", "OPEN_GUI", "SINGLEPLAYER");
+            JsonButton multiplayer = new JsonButton(20, -130,100,20,"BOTTOM_LEFT", "Multiplayer", "cmcgui119:textures/button2.png", "OPEN_GUI","MULTIPLAYER");
+            JsonButton settings = new JsonButton(20, -100,100,20,"BOTTOM_LEFT", "Options", "cmcgui119:textures/button2.png", "OPEN_GUI","OPTIONS");
+            JsonButton mods = new JsonButton(20, -70,100,20,"BOTTOM_LEFT", "Mods", "cmcgui119:textures/button2.png", "OPEN_GUI","MODS");
+            JsonButton quit = new JsonButton(20, -40,100,20,"BOTTOM_LEFT", "Quit", "cmcgui119:textures/button2.png", "QUIT");
             JsonButton reload = new JsonButton(-30, 10,20,20,"TOP_RIGHT", "", "cmcgui119:textures/button_reload.png", "RELOAD_MOD_CONFIG");
             JsonImage logo = new JsonImage("image", 10,-17,200,100,"TOP_LEFT","cmcgui119:textures/logo.png");
             File f1 = new File(screensPath + "/MainMenuScreen.json");
