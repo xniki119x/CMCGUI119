@@ -10,4 +10,7 @@ public class JsonScreen extends JsonBase {
         this.name = name;
         this.background = background;
     }
+    public JsonScreen(String id, String name) {
+        this(id,name,"");
+    }
 }

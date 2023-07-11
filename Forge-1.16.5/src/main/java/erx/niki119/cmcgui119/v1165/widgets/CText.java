@@ -1,10 +1,9 @@
 package erx.niki119.cmcgui119.v1165.widgets;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import erx.niki119.cmcgui119.core.helpers.JsonHelper;
 import erx.niki119.cmcgui119.core.utils.AnchorType;
 import erx.niki119.cmcgui119.core.utils.json.components.JsonText;
-import erx.niki119.cmcgui119.v1165.CMCGUI119;
+import erx.niki119.cmcgui119.v1165.EmpyrealInterface;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.screen.Screen;
@@ -58,7 +57,7 @@ public class CText extends CComponent {
                 color =R * 16*16*16*16+G*16*16+B;
             }
         }catch(Exception e){
-            CMCGUI119.LOGGER.error("ERROR PARSE COLOR");
+            EmpyrealInterface.LOGGER.error("ERROR PARSE COLOR");
         }
         return color;
     }

@@ -9,7 +9,7 @@ public class JsonButton extends JsonComponent {
     public String hoveredFontColor;
 
     public JsonButton(int xPos, int yPos, int width, int height, String anchor, String text, String texture, String action, String data) {
-        this(xPos, yPos, width, height, anchor, text, texture, action, data, "000", "000");
+        this(xPos, yPos, width, height, anchor, text, texture, action, data, "FFF", "FFF");
     }
 
     public JsonButton(int xPos, int yPos, int width, int height, String anchor, String text, String texture, String action, String data, String fontColor, String hoveredFontColor) {

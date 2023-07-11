@@ -18,12 +18,14 @@ public class CScreen extends Screen {
     private final RenderSkybox panorama = new RenderSkybox(CUBE_MAP);
     public List<CComponent> components;
     public ResourceLocation background;
+    public boolean backgroundb = true;
     public String name;
     public boolean p = false;
 
     public CScreen(JsonScreen json, List<CComponent> components) {
         super(new TranslationTextComponent(json.name));
         name = json.name;
+        if(json.background.equals("")) backgroundb = false;
         if(json.background!=null) {
             background = new ResourceLocation(json.background);
         }else {
@@ -45,7 +47,7 @@ public class CScreen extends Screen {
     public void render(MatrixStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_) {
         if(p) {
             this.panorama.render(p_230430_4_, MathHelper.clamp(1, 0, 1));
-        }else {
+        }else if(backgroundb){
             //fill(p_230430_1_, 0, 0, this.width, this.height, -1);
             minecraft.getTextureManager().bind(background);
             blit(p_230430_1_, 0, 0, this.width, this.height, 0.0F, 0.0F, 1, 1, 1, 1);

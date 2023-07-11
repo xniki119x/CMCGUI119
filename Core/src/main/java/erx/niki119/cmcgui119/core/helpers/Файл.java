@@ -2,7 +2,7 @@ package erx.niki119.cmcgui119.core.helpers;
 
 import java.io.*;
 
-public class FileHelper {
+public class Файл {
     public static String readFileString(File file) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
         String s;

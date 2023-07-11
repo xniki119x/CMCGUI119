@@ -11,6 +11,7 @@ public enum GUIS implements Function<Screen, Screen> {
     SINGLEPLAYER(WorldSelectionScreen::new),
     MULTIPLAYER(MultiplayerScreen::new),
     OPTIONS(m -> new OptionsScreen(m, Minecraft.getInstance().options)),
+    NULL(m -> null),
     MODS(ModListScreen::new);
 
     public Function<Screen, Screen> s;

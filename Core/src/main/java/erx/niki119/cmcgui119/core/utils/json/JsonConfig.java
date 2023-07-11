@@ -1,12 +1,12 @@
 package erx.niki119.cmcgui119.core.utils.json;
 
 public class JsonConfig {
-    public boolean enableDebug;
-    public boolean enableCustomMainMenuScreen;
-    public boolean enablePauseMenuScreen;
+    public boolean дебаг;
+    public boolean главное_меню;
+    public boolean меню_паузы;
     public JsonConfig(){
-        this.enableDebug = true;
-        this.enableCustomMainMenuScreen = true;
-        this.enablePauseMenuScreen = true;
+        this.дебаг = true;
+        this.главное_меню = true;
+        this.меню_паузы = true;
     }
 }
