@@ -1,17 +1,15 @@
 package erx.niki119.cmcgui119.v1201.widgets;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import erx.niki119.cmcgui119.core.utils.AnchorType;
 import erx.niki119.cmcgui119.core.utils.json.components.JsonText;
 import erx.niki119.cmcgui119.v1201.EmpyrealInterface;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
 
 public class CText extends CComponent {
     public final int xOffset, yOffset;
     public String text;
-    public FontRenderer font;
     public int l;
     public AnchorType anchor = AnchorType.TOP_LEFT;
     public int fontColor, hoveredFontColor;
@@ -29,13 +27,13 @@ public class CText extends CComponent {
         return this;
     }
     @Override
-    public void render(MatrixStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_){
+    public void render(GuiGraphics p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_){
         Minecraft mc = Minecraft.getInstance();
         isHovered = p_230430_2_ >= x && p_230430_3_ >= y && p_230430_2_ < x + mc.font.width(text) && p_230430_3_ < y + mc.font.lineHeight;
         if(!isHovered) {
-            drawString(p_230430_1_, mc.font, text, x, y, fontColor);
+            p_230430_1_.drawString(mc.font, text, x, y, fontColor);
         }else {
-            drawString(p_230430_1_, mc.font, text, x, y, hoveredFontColor);
+            p_230430_1_.drawString(mc.font, text, x, y, hoveredFontColor);
         }
     }
 

@@ -1,13 +1,13 @@
 package erx.niki119.cmcgui119.v1201.widgets;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import erx.niki119.cmcgui119.core.utils.json.Value;
 import erx.niki119.cmcgui119.v1201.utils.ActionType;
 import erx.niki119.cmcgui119.core.utils.AnchorType;
 import erx.niki119.cmcgui119.core.utils.json.components.JsonButton;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.resources.ResourceLocation;
 
 public class CButton extends CComponent {
 
@@ -48,18 +48,19 @@ public class CButton extends CComponent {
     }
 
     @Override
-    public void render(MatrixStack p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_){
+    public void render(GuiGraphics p_230430_1_, int p_230430_2_, int p_230430_3_, float p_230430_4_){
         Minecraft mc = Minecraft.getInstance();
-        mc.getTextureManager().bind(texture);
         isHovered = p_230430_2_ >= x && p_230430_3_ >= y && p_230430_2_ < x + this.width && p_230430_3_ < y + this.height;
         if(!isHovered) {
-            blit(p_230430_1_, x, y, 0, 0, width, height, width, height*2);
+            p_230430_1_.blit(texture, x, y, 0, 0, width, height, width, height*2);
             if(text != null)
-                mc.font.draw(p_230430_1_, text, x + width/2 - mc.font.width(text) / 2, y + height/2 - mc.font.lineHeight/2, fontColor);
+                p_230430_1_.drawString(mc.font, text, x + width/2 - mc.font.width(text) / 2,
+                y + height/2 - mc.font.lineHeight/2,
+                        fontColor);
         }else {
-            blit(p_230430_1_, x, y, 0, height, width, height , width, height*2);
+            p_230430_1_.blit(texture, x, y, 0, height, width, height , width, height*2);
             if(text != null)
-                mc.font.draw(p_230430_1_, text, x + width/2 - mc.font.width(text) / 2, y + height/2 - mc.font.lineHeight/2, hoverFontColor);
+                p_230430_1_.drawString(mc.font, text, x + width/2 - mc.font.width(text) / 2, y + height/2 - mc.font.lineHeight/2, hoverFontColor);
         }
     }
 }

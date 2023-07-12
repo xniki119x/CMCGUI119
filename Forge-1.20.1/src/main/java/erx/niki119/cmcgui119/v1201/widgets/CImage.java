@@ -1,11 +1,11 @@
 package erx.niki119.cmcgui119.v1201.widgets;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import erx.niki119.cmcgui119.core.utils.AnchorType;
 import erx.niki119.cmcgui119.core.utils.json.components.JsonImage;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.resources.ResourceLocation;
 
 public class CImage extends CComponent {
     protected ResourceLocation texture;
@@ -29,10 +29,9 @@ public class CImage extends CComponent {
     }
 
     @Override
-    public void render(MatrixStack stack, int p_93658_, int p_93659_, float p_93660_) {
+    public void render(GuiGraphics stack, int p_93658_, int p_93659_, float p_93660_) {
         Minecraft mc = Minecraft.getInstance();
         isHovered = p_93658_ >= this.x && p_93659_ >= this.y && p_93658_ < this.x + this.width && p_93659_ < this.y + this.height;
-        mc.getTextureManager().bind(texture);
-        blit(stack, x , y , 0, 0, width, height, width, height);
+        stack.blit(texture, x , y , 0, 0, width, height, width, height);
         }
 }

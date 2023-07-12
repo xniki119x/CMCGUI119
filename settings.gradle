@@ -1,5 +1,5 @@
 rootProject.name = "${mod_name}"
 include "Core"
-include "Forge-1.16.5"
+//include "Forge-1.16.5"
 //include "Forge-1.19.3"
-//include "Forge-1.20.1"
+include "Forge-1.20.1" // Нужна JDK 17 и изменить версию градла на 7.2

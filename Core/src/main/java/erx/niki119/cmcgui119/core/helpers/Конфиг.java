@@ -36,7 +36,7 @@ public class Конфиг {
         if(!config_file.exists())
             createDefaultConfig();
         config = readJsonConfig();
-        File f = new File(config_file.getParentFile().getPath()+"/меню");
+        File f = new File(config_file.getParentFile().getPath()+"/меню"); // насрал
         if(!f.exists()) {
             f.mkdirs();
             if(config.главное_меню){
@@ -77,14 +77,16 @@ public class Конфиг {
     public void создать_стандартное_меню_паузы(){
         String путь_к_меню = config_file.getParentFile().getPath() + "/меню";
         try {
+            new File(путь_к_меню+"/меню_паузы").mkdirs();
         File f1 = new File(путь_к_меню + "/меню_паузы.json");
-        new File(путь_к_меню+"/меню_паузы").mkdirs();
         JsonScreen меню_паузы = new JsonScreen("screen", "меню_паузы");
         JsonButton вернуться_в_игру = new JsonButton(-102, 8,204,20,"DEFAULT", "Вернуться в игру", "cmcgui119:textures/button2.png", "OPEN_GUI", "NULL");
-        JsonButton достижения = new JsonButton(-102, 32,98,20,"DEFAULT", "Достижения", "cmcgui119:textures/button2.png", "OPEN_GUI", "NULL");
-        JsonButton статистика = new JsonButton(4, 32,98,20,"DEFAULT", "Статистика", "cmcgui119:textures/button2.png", "OPEN_GUI", "NULL");
-        JsonButton настройки = new JsonButton(-102, 80,98,20,"DEFAULT", "Настройки", "cmcgui119:textures/button2.png", "OPEN_GUI", "NULL");
-        JsonButton выход = new JsonButton(-102, 104,204,20,"DEFAULT", "Выход", "cmcgui119:textures/button2.png", "OPEN_GUI", "главное_меню");
+        JsonButton достижения = new JsonButton(-102, 32,98,20,"DEFAULT", "Достижения", "cmcgui119:textures/button2.png", "OPEN_GUI", "ADVANCEMENTS");
+        JsonButton статистика = new JsonButton(4, 32,98,20,"DEFAULT", "Статистика", "cmcgui119:textures/button2.png",
+                "OPEN_GUI", "STATS");
+        JsonButton настройки = new JsonButton(-102, 80,98,20,"DEFAULT", "Настройки", "cmcgui119:textures/button2.png"
+                , "OPEN_GUI", "OPTIONS");
+        JsonButton выход = new JsonButton(-102, 104,204,20,"DEFAULT", "Выход", "cmcgui119:textures/button2.png", "DISCONNECT");
         JsonButton перезагрузка = new JsonButton(-30, 10,20,20,"TOP_RIGHT", "", "cmcgui119:textures/button_reload.png", "RELOAD_MOD_CONFIG");
         File f2 = new File(путь_к_меню+"/меню_паузы/вернуться_в_игру.json");
         File f3 = new File(путь_к_меню+"/меню_паузы/достижения.json");
